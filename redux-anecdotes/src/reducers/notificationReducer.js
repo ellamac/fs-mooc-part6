@@ -21,6 +21,17 @@ export const showNotification = (message) => {
 export const hideNotification = () => {
   return {
     type: 'HIDE',
+    message: '',
+  };
+};
+
+export const setNotification = (message, time) => {
+  return (dispatch) => {
+    dispatch(showNotification(message));
+
+    setTimeout(() => {
+      dispatch(hideNotification());
+    }, time * 1000);
   };
 };
 
