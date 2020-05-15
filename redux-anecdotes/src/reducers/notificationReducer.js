@@ -14,22 +14,22 @@ const notificationReducer = (state = initialState, action) => {
 export const showNotification = (message) => {
   return {
     type: 'SHOW',
-    message: message,
+    message,
   };
 };
 
 export const hideNotification = () => {
   return {
     type: 'HIDE',
-    message: '',
   };
 };
 
+let timer;
 export const setNotification = (message, time) => {
   return (dispatch) => {
     dispatch(showNotification(message));
-
-    setTimeout(() => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
       dispatch(hideNotification());
     }, time * 1000);
   };
